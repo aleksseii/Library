@@ -19,7 +19,7 @@ public class Library {
     public List<Book> getBooksByAuthorName(String authorName) {
 
         return books.stream()
-                .filter(b -> b.getAuthor().getName().equals(authorName))
+                .filter(b -> b.getAuthor().getName().equalsIgnoreCase(authorName))
                 .collect(Collectors.toList());
     }
 

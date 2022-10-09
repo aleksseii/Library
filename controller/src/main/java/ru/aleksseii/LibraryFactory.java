@@ -1,5 +1,7 @@
 package ru.aleksseii;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +17,7 @@ public class LibraryFactory {
 
     private static final String regex = " - ";
 
-    public static Library createLibrary(Path path) {
+    public static Library createLibrary(@NotNull Path path) {
 
         List<Book> books = new ArrayList<>();
         try (InputStream inputStream = Files.newInputStream(path)) {
