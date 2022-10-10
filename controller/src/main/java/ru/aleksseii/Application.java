@@ -26,7 +26,7 @@ public class Application {
             System.out.println("Введите имя автора на кириллице в формате `{имя} {фамилия}`. " +
                     "Для выхода введите `выход`:");
 
-            authorName = SCANNER.nextLine();
+            authorName = SCANNER.nextLine().strip();
             if (authorName.equalsIgnoreCase("выход")) {
                 break;
             }

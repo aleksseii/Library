@@ -1,5 +1,10 @@
 plugins {
     id("java")
+    application
+}
+
+application {
+    mainClass.set("ru.aleksseii.Application")
 }
 
 repositories {
