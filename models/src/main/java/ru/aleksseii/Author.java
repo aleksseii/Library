@@ -3,9 +3,7 @@ package ru.aleksseii;
 import lombok.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@ToString
+@Data
 public class Author {
 
     private String name;

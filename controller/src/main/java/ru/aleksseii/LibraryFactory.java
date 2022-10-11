@@ -8,18 +8,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class LibraryFactory {
 
     private static long AMOUNT_OF_BOOKS = 0L;
 
-    private static final String regex = " - ";
+    private static final String DELIMITER = " - ";
 
     public static Library createLibrary(@NotNull Path path) {
 
-        List<Book> books = new ArrayList<>();
+        Library library = new Library(new HashMap<>());
         try (InputStream inputStream = Files.newInputStream(path)) {
 
             BufferedReader reader = new BufferedReader(
@@ -29,19 +28,20 @@ public class LibraryFactory {
             String line;
             while ((line = reader.readLine()) != null) {
 
-                String[] splitLine = line.split(regex);
-                Book newBook = Book.builder()
-                        .id(++AMOUNT_OF_BOOKS)
-                        .author(new Author(splitLine[0]))
-                        .title(splitLine[1])
-                        .build();
-                books.add(newBook);
+                String[] splitLine = line.split(DELIMITER);
+                Book newBook = new Book(
+                        ++AMOUNT_OF_BOOKS,
+                        splitLine[1],
+                        new Author(splitLine[0])
+                );
+
+                library.addBook(newBook);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new Library(books);
+        return library;
     }
 }

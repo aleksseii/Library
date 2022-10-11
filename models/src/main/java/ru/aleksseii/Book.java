@@ -3,10 +3,7 @@ package ru.aleksseii;
 import lombok.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
-@ToString
+@Data
 public class Book {
 
     private long id;
