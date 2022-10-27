@@ -1,14 +1,15 @@
 package ru.aleksseii;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Value;
 
 @AllArgsConstructor
-@Data
+@Value
 public class Book {
 
-    private long id;
+    long id;
 
-    private String title;
+    String title;
 
-    private Author author;
+    Author author;
 }

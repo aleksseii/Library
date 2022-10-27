@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application {
+public final class Application {
 
     private static final Path libraryDataPath = Paths.get("controller/src/main/resources/authors_and_books.txt");
 

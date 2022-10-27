@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @ToString
-public class Library {
+public final class Library {
 
     private Map<Author, List<Book>> authorToBooks;
 

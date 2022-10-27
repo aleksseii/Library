@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-public class LibraryFactory {
+public final class LibraryFactory {
 
     private static long AMOUNT_OF_BOOKS = 0L;
 

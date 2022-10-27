@@ -3,8 +3,8 @@ package ru.aleksseii;
 import lombok.*;
 
 @AllArgsConstructor
-@Data
+@Value
 public class Author {
 
-    private String name;
+    String name;
 }
