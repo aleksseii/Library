@@ -1,10 +1,7 @@
 package ru.aleksseii;
 
-import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
-@AllArgsConstructor
-@Value
-public class Author {
 
-    String name;
+public record Author(@NotNull String name) {
 }

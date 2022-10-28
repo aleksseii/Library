@@ -26,6 +26,8 @@ allprojects {
 
         testImplementation("org.hamcrest:hamcrest-all:1.3")
 
+        implementation("com.google.inject:guice:5.1.0")
+
         implementation("org.jetbrains:annotations:23.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.24")
