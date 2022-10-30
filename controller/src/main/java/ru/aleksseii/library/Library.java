@@ -17,9 +17,11 @@ import java.util.Collection;
 @Getter
 public final class Library {
 
-    private int size;
+    private static final @NotNull Gson GSON = new Gson();
 
     private final @NotNull BookCell @NotNull [] bookCells;
+
+    private int size;
 
     @Inject
     public Library(int capacity, @NotNull BooksFactory factory) {
@@ -67,20 +69,6 @@ public final class Library {
     }
 
     /**
-     * @return position of first empty cell,
-     * `-1` if there is no any empty cell
-     */
-    public int findEmptyCell() {
-
-        for (int i = 0; i < bookCells.length; i++) {
-            if (!bookCells[i].isFilled()) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
      * @param book new book to add in library
      * @return index of cell, new book has been inserted into
      */
@@ -103,22 +91,40 @@ public final class Library {
      */
     public @Nullable Book extractBook(int cellPosition) {
 
-        checkCellPosition(cellPosition);
-        if (bookCells[cellPosition].isFilled()) {
+        if (!cellIsFilled(cellPosition)) {
+            System.out.format("No book at position [%d]\n", cellPosition);
             return null;
         }
+
+        Book extractedBook = bookCells[cellPosition].extractBook();
+        String extractedBookJson = GSON.toJson(extractedBook);
+        System.out.format("From position [%d], extracted book %s\n",
+                cellPosition, extractedBookJson);
+
         this.size--;
-        return bookCells[cellPosition].extractBook();
+        return extractedBook;
     }
 
     public void printContent(@NotNull PrintStream stream) {
 
-        Gson gson = new Gson();
         Arrays.stream(bookCells)
                 .filter(BookCell::isFilled)
-                .map(BookCell::getBook)
-                .map(gson::toJson)
+                .map(cell -> GSON.toJson(cell.getBook()))
                 .forEach(stream::println);
+    }
+
+    /**
+     * @return position of first empty cell,
+     * `-1` if there is no any empty cell
+     */
+    private int findEmptyCell() {
+
+        for (int i = 0; i < bookCells.length; i++) {
+            if (!bookCells[i].isFilled()) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void checkCellPosition(int cellPosition) {

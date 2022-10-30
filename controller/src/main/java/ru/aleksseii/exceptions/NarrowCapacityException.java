@@ -3,7 +3,7 @@ package ru.aleksseii.exceptions;
 
 public final class NarrowCapacityException extends RuntimeException {
 
-    public NarrowCapacityException() {
+    public NarrowCapacityException() { // default constructor
     }
 
     public NarrowCapacityException(String message) {
