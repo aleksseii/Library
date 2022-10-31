@@ -26,6 +26,8 @@ allprojects {
 
         testImplementation("org.hamcrest:hamcrest-all:1.3")
 
+        implementation("name.falgout.jeffrey.testing.junit5:guice-extension:1.2.1")
+
         implementation("com.google.inject:guice:5.1.0")
 
         implementation("org.jetbrains:annotations:23.0.0")

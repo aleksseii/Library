@@ -8,11 +8,15 @@ import org.jetbrains.annotations.Nullable;
 import ru.aleksseii.Book;
 import ru.aleksseii.BookCell;
 import ru.aleksseii.books.BooksFactory;
+import ru.aleksseii.exceptions.EmptyBookCellException;
 import ru.aleksseii.exceptions.NarrowCapacityException;
 
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.IntStream;
 
 @Getter
 public final class Library {
@@ -89,11 +93,10 @@ public final class Library {
      * @param cellPosition number of cell to extract book from
      * @return book, extracted from the pointed cell, `null` if cell is empty
      */
-    public @Nullable Book extractBook(int cellPosition) {
+    public @NotNull Book extractBook(int cellPosition) {
 
         if (!cellIsFilled(cellPosition)) {
-            System.out.format("No book at position [%d]\n", cellPosition);
-            return null;
+            throw new EmptyBookCellException("Illegal to extract book from empty book cell");
         }
 
         Book extractedBook = bookCells[cellPosition].extractBook();
@@ -102,14 +105,28 @@ public final class Library {
                 cellPosition, extractedBookJson);
 
         this.size--;
+        assert extractedBook != null;
         return extractedBook;
+    }
+
+    public @NotNull List<Book> getAllBooks() {
+        return Arrays.stream(bookCells)
+                .map(BookCell::getBook)
+                .filter(Objects::nonNull)
+                .toList();
     }
 
     public void printContent(@NotNull PrintStream stream) {
 
-        Arrays.stream(bookCells)
-                .filter(BookCell::isFilled)
-                .map(cell -> GSON.toJson(cell.getBook()))
+//        for (int i = 0; i < bookCells.length; i++) {
+//            BookCell cell = bookCells[i];
+//            String result = String.format("[%d]", i) + (cell.isFilled() ? GSON.toJson(cell.getBook()) : "{}");
+//            stream.println(result);
+//        }
+
+        IntStream.range(0, bookCells.length)
+                .mapToObj(i -> String.format("[%d]\t\t", i) +
+                        (bookCells[i].isFilled() ? GSON.toJson(bookCells[i].getBook()) : "{}"))
                 .forEach(stream::println);
     }
 
