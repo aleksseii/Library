@@ -22,20 +22,17 @@ allprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
 
         testImplementation("org.mockito:mockito-inline:4.8.1")
-        testImplementation("org.mockito:mockito-junit-jupiter:4.8.1")
-
-        testImplementation("org.hamcrest:hamcrest-all:1.3")
 
         implementation("name.falgout.jeffrey.testing.junit5:guice-extension:1.2.1")
 
         implementation("com.google.inject:guice:5.1.0")
 
+        implementation("com.google.code.gson:gson:2.10")
+
         implementation("org.jetbrains:annotations:23.0.0")
 
         compileOnly("org.projectlombok:lombok:1.18.24")
         annotationProcessor("org.projectlombok:lombok:1.18.24")
-
-        implementation("com.google.code.gson:gson:2.10")
     }
 
     tasks {
