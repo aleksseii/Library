@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import org.jetbrains.annotations.NotNull;
 import ru.aleksseii.library.Library;
 import ru.aleksseii.library.LibraryFactory;
+import ru.aleksseii.guice_modules.LibraryModule;
 
 public final class Application {
 

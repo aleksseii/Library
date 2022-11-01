@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import ru.aleksseii.Book;
 import ru.aleksseii.BookCell;
 import ru.aleksseii.books.BooksFactory;
@@ -117,12 +116,6 @@ public final class Library {
     }
 
     public void printContent(@NotNull PrintStream stream) {
-
-//        for (int i = 0; i < bookCells.length; i++) {
-//            BookCell cell = bookCells[i];
-//            String result = String.format("[%d]", i) + (cell.isFilled() ? GSON.toJson(cell.getBook()) : "{}");
-//            stream.println(result);
-//        }
 
         IntStream.range(0, bookCells.length)
                 .mapToObj(i -> String.format("[%d]\t\t", i) +

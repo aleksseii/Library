@@ -1,4 +1,4 @@
-package ru.aleksseii;
+package ru.aleksseii.guice_modules;
 
 import com.google.inject.AbstractModule;
 import org.jetbrains.annotations.NotNull;
