@@ -1,14 +1,8 @@
 package ru.aleksseii;
 
-import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
-@AllArgsConstructor
-@Data
-public class Book {
 
-    private long id;
-
-    private String title;
-
-    private Author author;
+public record Book(@NotNull Author author,
+                   @NotNull String name) {
 }

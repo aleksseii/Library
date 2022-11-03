@@ -9,6 +9,7 @@
         </processorPath>
         <module name="Library.models.main" />
         <module name="Library.controller.main" />
+        <module name="Library.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
